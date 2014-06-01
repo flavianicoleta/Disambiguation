@@ -1,0 +1,11 @@
+#Idea
+*.iml
+*.ipr
+*.iws
+.idea/
+/.project
+/.DS_Store
+/.classpath
+/target/
+/.settings/
+/.out

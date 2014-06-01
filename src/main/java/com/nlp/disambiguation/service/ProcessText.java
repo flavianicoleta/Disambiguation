@@ -48,8 +48,8 @@ public class ProcessText {
     }
 
     public static void main(String[] args){
-        String input = "Maria va merge la mare !";
-        String output = "Maria|Maria|NP|Np va|vrea|VA3S|Va--3s merge|merge|VN|Vmnp la|la|S|Spsa mare|mare|NSRN|Ncfsrn !|!|EXCL|EXCL";
+        String input = "Flavia va merge la mare !";
+        String output = "Flavia|Flavia|NP|Np va|vrea|VA3S|Va--3s merge|merge|VN|Vmnp la|la|S|Spsa mare|mare|NSRN|Ncfsrn !|!|EXCL|EXCL";
         Map<String, PartOfSpeech> map = ProcessText.getProcessedWords(input, output);
         Set<String> keySet = map.keySet();
         for(String key:keySet){

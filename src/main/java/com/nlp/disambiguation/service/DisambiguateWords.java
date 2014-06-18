@@ -56,7 +56,7 @@ public class DisambiguateWords {
 //        }
     }
 
-    public static int[] disambiguateTriplet(Word word1, Word word2, Word word3){
+    public static void disambiguateTriplet(Word word1, Word word2, Word word3){
         int[] currentSenses;
         Map<int[], Double> scores = new HashMap<>();
         for(Sense sense1 : word1.getDefinitions()){
@@ -80,8 +80,13 @@ public class DisambiguateWords {
                 maxSenses = senses;
             }
         }
+        ResultWord resultWord1 = new ResultWord(word1.getName(), word1.getDefinitions().get(maxSenses[0]));
+        ResultWord resultWord2 = new ResultWord(word2.getName(), word2.getDefinitions().get(maxSenses[1]));
+        ResultWord resultWord3 = new ResultWord(word3.getName(), word3.getDefinitions().get(maxSenses[2]));
         
-        return maxSenses;
+        resultWordList.add(resultWord1);
+        resultWordList.add(resultWord2);
+        resultWordList.add(resultWord3);
     }
 
     public static double computeScore(Sense sense1, Sense sense2, Sense sense3){

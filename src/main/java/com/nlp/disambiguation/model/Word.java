@@ -67,6 +67,10 @@ public class Word {
 		this.antonyms = antonyms;
 	}
 
+    public boolean hasOneSense(){
+        return (definitions.size() == 1);
+    }
+
 	@Override
 	public String toString() {
 		return "Word [name=" + name + ", partOfSpeech=" + partOfSpeech

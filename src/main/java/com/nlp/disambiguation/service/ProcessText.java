@@ -75,7 +75,4 @@ public class ProcessText {
         return getProcessedText(getResponse(input));
     }
 
-//    public static void main(String[] args){
-//        System.out.println(processInputText("Maria va merge la mare !"));
-//    }
 }

@@ -15,7 +15,7 @@ import java.net.Socket;
  */
 public class ProcessText {
     private static String getResponse(String input){
-        String result = null;
+        String result = "";
         try{
             String xmldata ="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                     "<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">\n" +
@@ -45,9 +45,11 @@ public class ProcessText {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             String line;
+            boolean ok = false;
             while ((line = bufferedReader.readLine()) != null){
-                if(line.startsWith("<?xml")){
-                    result = line;
+                if(line.startsWith("<?xml") || ok) {
+                    ok = true;
+                    result += line;
                 }
             }
         } catch (Exception e){
@@ -68,11 +70,16 @@ public class ProcessText {
         } catch (Exception e){
             e.printStackTrace();
         }
+//        System.out.println(result);
         return result;
     }
 
     public static String processInputText(String input){
         return getProcessedText(getResponse(input));
+    }
+
+    public static void main(String[] args){
+        processInputText("Maria a plecat la mare cu sora ei ! Ele au mers cu trenul .");
     }
 
 }

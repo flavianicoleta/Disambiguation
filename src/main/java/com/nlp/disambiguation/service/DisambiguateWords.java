@@ -21,6 +21,10 @@ public class DisambiguateWords {
     //TODO add a list of words to ignore
     static List<String> ignoredWords = new ArrayList<>();
 
+    public static void popolateIgnoredWords(){
+
+    }
+
     public static void getWords(String input) throws IOException{
         List<Word> verbsAndNouns = IdentifyVerbsAndNouns.getProcessedWords(input);
         Word processedWord;
@@ -28,6 +32,7 @@ public class DisambiguateWords {
             processedWord = Search.search(word);
             wordList.add(processedWord);
         }
+        printList();
     }
 
     public static void getWordsWithOneSense(){
@@ -39,24 +44,6 @@ public class DisambiguateWords {
                 word.setDisambiguated(true);
             }
         }
-
-        //disambiguate synonyms
-
-//        for(Word disambiguatedWord:wordList){
-//            if(disambiguatedWord.isDisambiguated()){
-//                for(String synonym:disambiguatedWord.getSynonyms()){
-//                    for(Word nondisambiguateddWord:wordList){
-//                        if(!nondisambiguateddWord.isDisambiguated()){
-//                            if(synonym.contains(nondisambiguateddWord.getName())){
-//                                resultWord = new ResultWord(nondisambiguateddWord.getName(),disambiguatedWord.getDefinitions().get(0));
-//                                resultWordList.add(resultWord);
-//                                nondisambiguateddWord.setDisambiguated(true);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 
     public static void disambiguateAllWords(){
@@ -64,14 +51,17 @@ public class DisambiguateWords {
         for(int i = 0; i < size-2; i++){
             for(int j = i + 1; j < size-1; j++){
                 for(int k = j + 1; k < size; k++){
-                    disambiguateTriplet(wordList.get(i), wordList.get(j), wordList.get(k));
+                    if(j == i+1 && k == j+1){
+                        disambiguateTriplet(wordList.get(i), wordList.get(j), wordList.get(k));
+                    }
+
                 }
             }
         }
     }
 
     public static void disambiguateTriplet(Word word1, Word word2, Word word3){
-        if(!word1.hasOneSense() || word2.hasOneSense() || word3.hasOneSense()){
+        if(!word1.hasOneSense() && !word2.hasOneSense() && !word3.hasOneSense()){
             int[] currentSenses;
             Map<int[], Double> scores = new HashMap<>();
             for(Sense sense1 : word1.getDefinitions()){
@@ -97,30 +87,36 @@ public class DisambiguateWords {
             }
             ResultWord resultWord;
             if(maxScore == 0.0){
-                if(!word1.hasOneSense()){
+                if(word1.hasSense() && !word1.isDisambiguated()){
                     resultWord = new ResultWord(word1.getName(), word1.getDefinitions().get(0));
                     resultWordList.add(resultWord);
+                    word1.setDisambiguated(true);
                 }
-                if(!word2.hasOneSense()){
+                if(word2.hasSense() && !word2.isDisambiguated()){
                     resultWord = new ResultWord(word2.getName(), word2.getDefinitions().get(0));
                     resultWordList.add(resultWord);
+                    word2.setDisambiguated(true);
                 }
-                if(!word3.hasOneSense()){
+                if(word3.hasSense() && !word3.isDisambiguated()){
                     resultWord =  new ResultWord(word3.getName(), word3.getDefinitions().get(0));
                     resultWordList.add(resultWord);
+                    word3.setDisambiguated(true);
                 }
             } else {
-                if(!word1.hasOneSense()){
+                if(word1.hasSense() && !word1.isDisambiguated()){
                     resultWord = new ResultWord(word1.getName(), word1.getDefinitions().get(maxSenses[0]));
                     resultWordList.add(resultWord);
+                    word1.setDisambiguated(true);
                 }
-                if(!word2.hasOneSense()){
+                if(word2.hasSense() &&!word2.isDisambiguated()){
                     resultWord = new ResultWord(word2.getName(), word2.getDefinitions().get(maxSenses[1]));
                     resultWordList.add(resultWord);
+                    word2.setDisambiguated(true);
                 }
-                if(!word3.hasOneSense()){
+                if(word3.hasSense() &&!word3.isDisambiguated()){
                     resultWord =  new ResultWord(word3.getName(), word3.getDefinitions().get(maxSenses[2]));
                     resultWordList.add(resultWord);
+                    word3.setDisambiguated(true);
                 }
             }
 
@@ -155,8 +151,28 @@ public class DisambiguateWords {
                 listOfWords.add(word);
             }
         }
-        //TODO split words and exclude ignored words
         return listOfWords;
+    }
+
+    public static void printResult(){
+        for(ResultWord resultWord : resultWordList){
+            System.out.println(resultWord);
+        }
+    }
+
+    public static void printList(){
+        for(Word word : wordList){
+            System.out.println(word);
+        }
+        System.out.println("---------------------------");
+    }
+    public static void main(String[] args) throws Exception{
+        String input = "Maria a plecat pe litoral cu sora ei " +
+                "! Ele au calatorit cu trenul . Drumul a fost lung . Traiectoria a fost usoara . ";
+        getWords(input);
+        getWordsWithOneSense();
+        disambiguateAllWords();
+        printResult();
     }
 
 }

@@ -1,6 +1,5 @@
 package com.nlp.disambiguation.service;
 
-import com.nlp.disambiguation.model.PartOfSpeech;
 import com.nlp.disambiguation.model.Word;
 
 import java.util.*;
@@ -12,7 +11,6 @@ public class IdentifyVerbsAndNouns {
 
     public static List<Word> getProcessedWords(String input){
         String output = ProcessText.processInputText(input);
-        Map<String, PartOfSpeech> map = new HashMap<>();
         String[] inputArr = input.split("\\s");
         String[] outputArr = output.split("\\s");
 
@@ -30,23 +28,17 @@ public class IdentifyVerbsAndNouns {
                     if(partOfSpeechTag.length() >= 2){
                         char firstPosition = partOfSpeechTag.charAt(0);
                         char secondPosition = partOfSpeechTag.charAt(1);
-//                        PartOfSpeech partOfSpeech = new PartOfSpeech();
                         Word word = new Word();
                         if(firstPosition == 'N' && secondPosition != 'P' ) {
-//                            partOfSpeech.setSymbol('N');
-//                            partOfSpeech.setName("noun");
                             word.setName(currentWord[1]);
                             word.setPartOfSpeech("s.");
                         } else if (firstPosition == 'V' && secondPosition != 'A') {
-//                            partOfSpeech.setSymbol('V');
-//                            partOfSpeech.setName("verb");
                             word.setName(currentWord[1]);
                             word.setPartOfSpeech("vb.");
                         } else {
                             continue;
                         }
                         list.add(word);
-//                        map.put(currentWord[1], partOfSpeech);
                     }
                 } else {
                     return null;

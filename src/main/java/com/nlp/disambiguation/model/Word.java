@@ -14,7 +14,12 @@ public class Word {
     boolean disambiguated;
 
     public Word(){
-
+        this.name = new String();
+        this.partOfSpeech = new String();
+        definitions = new ArrayList<>();
+        synonyms = new ArrayList<>();
+        antonyms = new ArrayList<>();
+        disambiguated = false;
     }
 
 	public Word(String name, String partOfSpeech) {
@@ -69,6 +74,14 @@ public class Word {
 
     public boolean hasOneSense(){
         return (definitions.size() == 1);
+    }
+
+    public boolean hasMoreThanOneSense(){
+        return (definitions.size() > 1);
+    }
+
+    public boolean hasSense(){
+        return (definitions.size() != 0);
     }
 
 	@Override

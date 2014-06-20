@@ -4,11 +4,9 @@ import com.nlp.disambiguation.model.ResultWord;
 import com.nlp.disambiguation.model.Sense;
 import com.nlp.disambiguation.model.Word;
 
+import java.io.Console;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by fgheorghe on 6/18/14.
@@ -32,7 +30,7 @@ public class DisambiguateWords {
             processedWord = Search.search(word);
             wordList.add(processedWord);
         }
-        printList();
+//        printList();
     }
 
     public static void getWordsWithOneSense(){
@@ -167,9 +165,13 @@ public class DisambiguateWords {
         System.out.println("---------------------------");
     }
     public static void main(String[] args) throws Exception{
-        String input = "Maria a plecat pe litoral cu sora ei " +
-                "! Ele au calatorit cu trenul . Drumul a fost lung . Traiectoria a fost usoara . ";
-        getWords(input);
+        String input = "Maria a plecat pe litoral cu sora ei ! Ele au calatorit cu trenul . Drumul a fost lung . Drumul a fost usor . ";
+
+        System.out.println("Give the text: ");
+        Scanner scanner = new Scanner(System.in);
+        String text = scanner.nextLine();
+
+        getWords(text);
         getWordsWithOneSense();
         disambiguateAllWords();
         printResult();

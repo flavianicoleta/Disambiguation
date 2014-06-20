@@ -168,9 +168,9 @@ public class Search {
 	    
 	    findSynonymsAndAntonyms(sources, definitions, cuvant);
 //	    System.out.println("Synonyms:");
-	    for (int i = 0; i < cuvant.getSynonyms().size(); i++){
-	    	System.out.println(i+": "+cuvant.getSynonyms().get(i));
-	    }
+//	    for (int i = 0; i < cuvant.getSynonyms().size(); i++){
+//	    	System.out.println(i+": "+cuvant.getSynonyms().get(i));
+//	    }
 //	    System.out.println("Antonyms:");
 //	    for (int i = 0; i < cuvant.getAntonyms().size(); i++){
 //	    	System.out.println(i+": "+cuvant.getAntonyms().get(i));

@@ -33,9 +33,6 @@ public class ResultWord {
 
     @Override
     public String toString() {
-        return "ResultWord{" +
-                "word='" + word + '\'' +
-                ", sense=" + sense +
-                '}';
+        return "word: "+ word + "\t - \t" + "definition: " + sense.getDefinition() + "\n";
     }
 }

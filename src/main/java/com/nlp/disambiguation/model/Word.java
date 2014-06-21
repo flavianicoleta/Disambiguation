@@ -22,16 +22,6 @@ public class Word {
         disambiguated = false;
     }
 
-	public Word(String name, String partOfSpeech) {
-		super();
-		this.name = name;
-		this.partOfSpeech = partOfSpeech;
-		definitions = new ArrayList<>();
-		synonyms = new ArrayList<>();
-		antonyms = new ArrayList<>();
-        disambiguated = false;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -59,14 +49,8 @@ public class Word {
     public void addDefinition(Sense definition) {
 		this.definitions.add(definition);
 	}
-	public List<String> getSynonyms() {
-		return synonyms;
-	}
 	public void addSynonym(String synonym) {
 		this.synonyms.add(synonym);
-	}
-	public List<String> getAntonyms() {
-		return antonyms;
 	}
 	public void setAntonyms(List<String> antonyms) {
 		this.antonyms = antonyms;
@@ -74,10 +58,6 @@ public class Word {
 
     public boolean hasOneSense(){
         return (definitions.size() == 1);
-    }
-
-    public boolean hasMoreThanOneSense(){
-        return (definitions.size() > 1);
     }
 
     public boolean hasSense(){
@@ -90,6 +70,4 @@ public class Word {
 				+ ", definitions=" + definitions + ", synonyms=" + synonyms
 				+ ", antonyms=" + antonyms + "]";
 	}
-	
-
 }

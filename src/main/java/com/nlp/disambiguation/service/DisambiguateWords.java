@@ -7,9 +7,6 @@ import com.nlp.disambiguation.model.Word;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by fgheorghe on 6/18/14.
- */
 public class DisambiguateWords {
 
     static List<Word> wordList = new ArrayList<>();
@@ -22,7 +19,6 @@ public class DisambiguateWords {
             processedWord = Search.search(word);
             wordList.add(processedWord);
         }
-//        printList();
     }
 
     public static void getWordsWithOneSense(){
@@ -154,9 +150,8 @@ public class DisambiguateWords {
         }
         System.out.println("---------------------------");
     }
-    public static void main(String[] args) throws Exception{
-        String input = "Maria a plecat pe litoral cu sora ei ! Ele au calatorit cu trenul . Drumul a fost lung . Drumul a fost usor . ";
 
+    public static void main(String[] args) throws Exception{
         System.out.println("Give the text: ");
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();

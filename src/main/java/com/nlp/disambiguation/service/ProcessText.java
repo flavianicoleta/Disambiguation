@@ -10,9 +10,6 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
-/**
- * Created by Dell on 6/15/14.
- */
 public class ProcessText {
     private static String getResponse(String input){
         String result = "";
@@ -75,10 +72,6 @@ public class ProcessText {
 
     public static String processInputText(String input){
         return getProcessedText(getResponse(input));
-    }
-
-    public static void main(String[] args){
-        processInputText("Maria a plecat la mare cu sora ei ! Ele au mers cu trenul .");
     }
 
 }

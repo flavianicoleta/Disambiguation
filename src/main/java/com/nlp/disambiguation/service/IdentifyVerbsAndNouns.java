@@ -4,9 +4,6 @@ import com.nlp.disambiguation.model.Word;
 
 import java.util.*;
 
-/**
- * Created by Dell on 6/1/14.
- */
 public class IdentifyVerbsAndNouns {
 
     public static List<Word> getProcessedWords(String input){
@@ -46,11 +43,5 @@ public class IdentifyVerbsAndNouns {
             }
         }
         return list;
-    }
-
-    public static void main(String[] args){
-        String input = "Maria va merge la munte !";
-        List<Word> map = IdentifyVerbsAndNouns.getProcessedWords(input);
-
     }
 }

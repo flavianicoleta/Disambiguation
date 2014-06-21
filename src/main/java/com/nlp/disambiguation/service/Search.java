@@ -14,10 +14,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class Search {
-
-	//static Word cuvant = new Word("veselie","s.");
 
 	private static String searchDEX(Word cuvant) throws IOException{
 		URL url = new URL("http://m.dexonline.ro/definitie/"+cuvant.getName());
@@ -143,8 +140,6 @@ public class Search {
 
 	public static Element getResults(String HTML){
 		Document doc = Jsoup.parse(HTML);
-//        System.out.println("Title: " + doc.getElementsByTag("title").text());
-        //set of all definitions
         Element results = doc.getElementById("resultsWrapper");
         return results;
 	}
@@ -158,29 +153,11 @@ public class Search {
 	    
 	    
 	    findDefinition(definitions, cuvant);
-//	    System.out.println("Definitions:");
 	    for (int i = 0; i < cuvant.getDefinitions().size(); i++){
             cuvant.getDefinitions().get(i).setSenseNumber(i + 1);
-//	    	System.out.println(i+": "+cuvant.getDefinitions().get(i));
 	    }
 	    
 	    findSynonymsAndAntonyms(sources, definitions, cuvant);
-//	    System.out.println("Synonyms:");
-//	    for (int i = 0; i < cuvant.getSynonyms().size(); i++){
-//	    	System.out.println(i+": "+cuvant.getSynonyms().get(i));
-//	    }
-//	    System.out.println("Antonyms:");
-//	    for (int i = 0; i < cuvant.getAntonyms().size(); i++){
-//	    	System.out.println(i+": "+cuvant.getAntonyms().get(i));
-//	    }
-//        System.out.println(cuvant);
         return cuvant;
-	}
-	
-	public static void main(String[] args) throws IOException {
-        Word cuvant = new Word("conduce","vb.");
-		Word newWord = search(cuvant);
-        System.out.println(newWord);
-//
 	}
 }

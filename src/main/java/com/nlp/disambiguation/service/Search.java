@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.nlp.disambiguation.model.Sense;
 import com.nlp.disambiguation.model.Word;
@@ -162,7 +160,7 @@ public class Search {
 	    findDefinition(definitions, cuvant);
 //	    System.out.println("Definitions:");
 	    for (int i = 0; i < cuvant.getDefinitions().size(); i++){
-            cuvant.getDefinitions().get(i).setSense(i+1);
+            cuvant.getDefinitions().get(i).setSenseNumber(i + 1);
 //	    	System.out.println(i+": "+cuvant.getDefinitions().get(i));
 	    }
 	    

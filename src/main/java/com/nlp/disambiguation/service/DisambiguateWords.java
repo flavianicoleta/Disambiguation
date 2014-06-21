@@ -4,7 +4,6 @@ import com.nlp.disambiguation.model.ResultWord;
 import com.nlp.disambiguation.model.Sense;
 import com.nlp.disambiguation.model.Word;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.*;
 
@@ -15,13 +14,6 @@ public class DisambiguateWords {
 
     static List<Word> wordList = new ArrayList<>();
     static List<ResultWord> resultWordList = new ArrayList<>();
-
-    //TODO add a list of words to ignore
-    static List<String> ignoredWords = new ArrayList<>();
-
-    public static void popolateIgnoredWords(){
-
-    }
 
     public static void getWords(String input) throws IOException{
         List<Word> verbsAndNouns = IdentifyVerbsAndNouns.getProcessedWords(input);
@@ -67,9 +59,9 @@ public class DisambiguateWords {
                     for(Sense sense3 : word3.getDefinitions()){
                         double score = computeScore(sense1, sense2, sense3);
                         currentSenses = new int[3];
-                        currentSenses[0] = sense1.getSense();
-                        currentSenses[1] = sense2.getSense();
-                        currentSenses[2] = sense3.getSense();
+                        currentSenses[0] = sense1.getSenseNumber();
+                        currentSenses[1] = sense2.getSenseNumber();
+                        currentSenses[2] = sense3.getSenseNumber();
                         scores.put(currentSenses, score);
                     }
                 }
@@ -145,9 +137,7 @@ public class DisambiguateWords {
         List<String> listOfWords = new ArrayList<>();
         String[] defWords = definition.split("\\s");
         for(String word : defWords){
-            if(!ignoredWords.contains(word)){
-                listOfWords.add(word);
-            }
+            listOfWords.add(word);
         }
         return listOfWords;
     }

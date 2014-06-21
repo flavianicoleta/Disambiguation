@@ -4,23 +4,23 @@ package com.nlp.disambiguation.model;
  * Created by fgheorghe on 6/18/14.
  */
 public class Sense {
-    private int sense;
+    private int senseNumber;
     private String definition;
 
     public Sense() {
     }
 
-    public Sense(int sense, String definition) {
-        this.sense = sense;
+    public Sense(int senseNumber, String definition) {
+        this.senseNumber = senseNumber;
         this.definition = definition;
     }
 
-    public int getSense() {
-        return sense;
+    public int getSenseNumber() {
+        return senseNumber;
     }
 
-    public void setSense(int sense) {
-        this.sense = sense;
+    public void setSenseNumber(int senseNumber) {
+        this.senseNumber = senseNumber;
     }
 
     public String getDefinition() {
@@ -34,7 +34,7 @@ public class Sense {
     @Override
     public String toString() {
         return "Sense{" +
-                "sense='" + sense + '\'' +
+                "senseNumber='" + senseNumber + '\'' +
                 ", definition='" + definition + '\'' +
                 '}';
     }
